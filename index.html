@@ -1,0 +1,1833 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAS InfoTech Solution – Real & Simple Solutions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --blue: #0a2d6e;
+            --blue-mid: #1546a0;
+            --blue-light: #1e6dd5;
+            --orange: #f47c20;
+            --orange-light: #ff9a45;
+            --white: #ffffff;
+            --bg: #f5f7fc;
+            --text: #111827;
+            --muted: #6b7a99;
+            --border: #e2e8f4;
+            --nav-h: 68px;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            color: var(--text);
+            background: var(--white);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        /* NAV */
+        .nav-wrap {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 200;
+            background: rgba(255, 255, 255, .97);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--border);
+            height: var(--nav-h);
+            transition: box-shadow .3s;
+        }
+
+        .nav-wrap.scrolled {
+            box-shadow: 0 4px 28px rgba(10, 45, 110, .08);
+        }
+
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 100%;
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        .logo-wrap {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            flex-shrink: 0;
+        }
+
+        .logo-box {
+            width: 36px;
+            height: 36px;
+            background:#0d1117;
+            border-radius: 7px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 13px;
+            color: var(--orange);
+        }
+
+        .logo-name {
+            font-weight: 800;
+            font-size: 15px;
+            margin-left: 15px;
+            color: var(--blue);
+            line-height: 1.15;
+        }
+
+        .logo-name em {
+            color: var(--orange);
+            font-style: normal;
+        }
+
+        .logo-sub {
+            margin-left: 35px;
+            font-size: 10px;
+            color: var(--muted);
+            font-weight: 500;
+            letter-spacing: .04em;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            height: 100%;
+        }
+
+        .nav-item {
+            position: relative;
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            height: 100%;
+            padding: 0 14px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text);
+            text-decoration: none;
+            white-space: nowrap;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: color .2s, border-color .2s;
+        }
+
+        .nav-link:hover,
+        .nav-item:hover>.nav-link {
+            color: var(--blue-light);
+            border-color: var(--orange);
+        }
+
+        .nav-link svg {
+            width: 11px;
+            height: 11px;
+            opacity: .4;
+            transition: transform .2s;
+        }
+
+        .nav-item:hover>.nav-link svg {
+            transform: rotate(180deg);
+            opacity: 1;
+        }
+
+        .nav-cta {
+            margin-left: 8px;
+            padding: 9px 22px;
+            background: var(--orange);
+            color: #fff;
+            font-size: 13.5px;
+            font-weight: 700;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background .2s, transform .15s;
+        }
+
+        .nav-cta:hover {
+            background: var(--orange-light);
+            transform: translateY(-1px);
+        }
+
+        /* Mega */
+        .mega {
+            position: absolute;
+            top: calc(var(--nav-h) + 1px);
+            left: 50%;
+            transform: translateX(-50%);
+            min-width: 620px;
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 0 0 14px 14px;
+            box-shadow: 0 20px 60px rgba(10, 45, 110, .1);
+            padding: 28px;
+            display: none;
+            gap: 32px;
+        }
+
+        .nav-item:hover .mega {
+            display: flex;
+        }
+
+        .mega-col h6 {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .mega-col a {
+            display: block;
+            padding: 7px 10px;
+            margin: 2px 0;
+            font-size: 13.5px;
+            font-weight: 500;
+            color: var(--text);
+            text-decoration: none;
+            border-radius: 6px;
+            transition: background .15s, color .15s;
+        }
+
+        .mega-col a:hover {
+            background: var(--bg);
+            color: var(--blue-light);
+        }
+
+        /* Drop */
+        .drop {
+            position: absolute;
+            top: calc(var(--nav-h) + 1px);
+            left: 0;
+            min-width: 220px;
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 0 0 14px 14px;
+            box-shadow: 0 16px 48px rgba(10, 45, 110, .1);
+            padding: 10px;
+            display: none;
+        }
+
+        .nav-item:hover .drop {
+            display: block;
+        }
+
+        .drop a {
+            display: block;
+            padding: 9px 14px;
+            font-size: 13.5px;
+            font-weight: 500;
+            color: var(--text);
+            text-decoration: none;
+            border-radius: 7px;
+            transition: background .15s, color .15s;
+        }
+
+        .drop a:hover {
+            background: var(--bg);
+            color: var(--blue-light);
+        }
+
+        /* HERO */
+        .hero {
+            padding-top: var(--nav-h);
+            background: var(--blue);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 55% 75% at 78% 45%, rgba(30, 109, 213, .45) 0%, transparent 65%),
+                radial-gradient(ellipse 35% 40% at 10% 85%, rgba(244, 124, 32, .12) 0%, transparent 60%);
+        }
+
+        .hero-inner {
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 80px 32px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+            width: 100%;
+        }
+
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(244, 124, 32, .15);
+            border: 1px solid rgba(244, 124, 32, .3);
+            color: var(--orange-light);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            padding: 5px 14px;
+            border-radius: 50px;
+            margin-bottom: 24px;
+        }
+
+        .hero-tag::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--orange);
+            border-radius: 50%;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.2rem, 4vw, 3.6rem);
+            font-weight: 800;
+            color: #fff;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: var(--orange);
+        }
+
+        .hero-desc {
+            color: rgba(255, 255, 255, .7);
+            font-size: 16px;
+            line-height: 1.75;
+            margin-bottom: 36px;
+            max-width: 460px;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .btn-orange {
+            background: var(--orange);
+            color: #fff;
+            padding: 13px 28px;
+            border-radius: 9px;
+            font-weight: 700;
+            font-size: 14px;
+            text-decoration: none;
+            transition: background .2s, transform .2s;
+            display: inline-block;
+        }
+
+        .btn-orange:hover {
+            background: var(--orange-light);
+            transform: translateY(-2px);
+        }
+
+        .btn-ghost {
+            background: rgba(255, 255, 255, .08);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, .25);
+            padding: 13px 28px;
+            border-radius: 9px;
+            font-weight: 600;
+            font-size: 14px;
+            text-decoration: none;
+            transition: background .2s;
+            display: inline-block;
+        }
+
+        .btn-ghost:hover {
+            background: rgba(255, 255, 255, .14);
+        }
+
+        .hero-panel {
+            background: rgba(255, 255, 255, .07);
+            border: 1px solid rgba(255, 255, 255, .13);
+            border-radius: 18px;
+            padding: 32px;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-panel h3 {
+            font-size: 11px;
+            font-weight: 700;
+            color: rgba(255, 255, 255, .45);
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .svc-row {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 13px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, .08);
+        }
+
+        .svc-row:last-child {
+            border-bottom: none;
+        }
+
+        .svc-dot {
+            width: 7px;
+            height: 7px;
+            background: var(--orange);
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .svc-row span {
+            color: rgba(255, 255, 255, .85);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .svc-arr {
+            margin-left: auto;
+            color: rgba(255, 255, 255, .2);
+            font-size: 11px;
+        }
+
+        /* STATS */
+        .stats-bar {
+            background: var(--bg);
+            border-bottom: 1px solid var(--border);
+            padding: 36px 32px;
+        }
+
+        .stats-inner {
+            max-width: 1320px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        .stat-box {
+            text-align: center;
+            padding: 0 32px;
+            border-right: 1px solid var(--border);
+        }
+
+        .stat-box:last-child {
+            border-right: none;
+        }
+
+        .stat-num {
+            font-size: 2.6rem;
+            font-weight: 800;
+            color: var(--blue);
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+
+        .stat-num em {
+            color: var(--orange);
+            font-style: normal;
+        }
+
+        .stat-lbl {
+            font-size: 13px;
+            color: var(--muted);
+            font-weight: 500;
+        }
+
+        /* SECTIONS */
+        .section {
+            padding: 90px 32px;
+        }
+
+        .section-inner {
+            max-width: 1320px;
+            margin: 0 auto;
+        }
+
+        .sec-hd {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 52px;
+            gap: 32px;
+        }
+
+        .sec-tag {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--orange);
+            margin-bottom: 10px;
+        }
+
+        .sec-h2 {
+            font-size: clamp(1.6rem, 2.8vw, 2.4rem);
+            font-weight: 800;
+            color: var(--blue);
+            line-height: 1.2;
+        }
+
+        .sec-desc {
+            font-size: 15px;
+            color: var(--muted);
+            line-height: 1.75;
+            max-width: 480px;
+        }
+
+        .see-all {
+            font-size: 13.5px;
+            font-weight: 700;
+            color: var(--blue-light);
+            text-decoration: none;
+            white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 20px;
+            border: 1.5px solid var(--blue-light);
+            border-radius: 8px;
+            transition: background .2s, color .2s;
+        }
+
+        .see-all:hover {
+            background: var(--blue-light);
+            color: #fff;
+        }
+
+        /* SERVICES */
+        .svc-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+        }
+
+        .svc-card {
+            background: var(--bg);
+            padding: 36px 32px;
+            transition: background .3s, transform .3s, box-shadow .3s;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .svc-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--blue-light), var(--orange));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform .3s;
+        }
+
+        .svc-card:hover {
+            background: #fff;
+            box-shadow: 0 12px 40px rgba(10, 45, 110, .09);
+            transform: translateY(-3px);
+        }
+
+        .svc-card:hover::after {
+            transform: scaleX(1);
+        }
+
+        .svc-ico {
+            width: 48px;
+            height: 48px;
+            border-radius: 11px;
+            background: rgba(10, 45, 110, .07);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            margin-bottom: 22px;
+            transition: background .3s;
+        }
+
+        .svc-card:hover .svc-ico {
+            background: var(--blue);
+        }
+
+        .svc-card h3 {
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--blue);
+        }
+
+        .svc-card p {
+            font-size: 13.5px;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        .svc-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            margin-top: 18px;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--blue-light);
+            text-decoration: none;
+            transition: gap .2s;
+        }
+
+        .svc-more:hover {
+            gap: 10px;
+        }
+
+        /* CASE STUDIES */
+        .case-studies {
+            background: var(--bg);
+        }
+
+        .case-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .case-card {
+            background: #fff;
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: box-shadow .3s, transform .3s;
+            cursor: pointer;
+        }
+
+        .case-card:hover {
+            box-shadow: 0 16px 48px rgba(10, 45, 110, .1);
+            transform: translateY(-4px);
+        }
+
+        .case-img {
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+
+        .ci1 {
+            background: linear-gradient(135deg, #0a2d6e, #1e6dd5);
+        }
+
+        .ci2 {
+            background: linear-gradient(135deg, #0d3320, #1a6640);
+        }
+
+        .ci3 {
+            background: linear-gradient(135deg, #5a2000, #c05621);
+        }
+
+        .ci4 {
+            background: linear-gradient(135deg, #1a0a3d, #553c9a);
+        }
+
+        .case-body {
+            padding: 28px;
+        }
+
+        .case-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 14px;
+        }
+
+        .case-tag {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            color: var(--blue-light);
+            background: rgba(30, 109, 213, .08);
+            padding: 3px 10px;
+            border-radius: 4px;
+        }
+
+        .case-card h3 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--blue);
+            line-height: 1.35;
+        }
+
+        .case-card p {
+            font-size: 13.5px;
+            color: var(--muted);
+            line-height: 1.65;
+        }
+
+        .case-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 16px;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--blue-light);
+            text-decoration: none;
+            transition: gap .2s;
+        }
+
+        .case-link:hover {
+            gap: 10px;
+        }
+
+        /* SOLUTIONS */
+        .solutions {
+            background: var(--blue);
+        }
+
+        .solutions .sec-h2 {
+            color: #fff;
+        }
+
+        .solutions .sec-desc {
+            color: rgba(255, 255, 255, .6);
+        }
+
+        .solutions .sec-tag {
+            color: var(--orange-light);
+        }
+
+        .sol-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-top: 52px;
+        }
+
+        .sol-card {
+            background: rgba(255, 255, 255, .06);
+            border: 1px solid rgba(255, 255, 255, .1);
+            border-radius: 14px;
+            padding: 28px 24px;
+            cursor: pointer;
+            transition: background .3s, transform .3s;
+        }
+
+        .sol-card:hover {
+            background: rgba(255, 255, 255, .1);
+            transform: translateY(-3px);
+        }
+
+        .sol-badge {
+            display: inline-block;
+            background: rgba(244, 124, 32, .2);
+            color: var(--orange-light);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: .07em;
+            text-transform: uppercase;
+            padding: 3px 9px;
+            border-radius: 4px;
+            margin-bottom: 16px;
+        }
+
+        .sol-card h3 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .sol-card p {
+            font-size: 13px;
+            color: rgba(255, 255, 255, .55);
+            line-height: 1.65;
+        }
+
+        /* INDUSTRIES */
+        .ind-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            margin-top: 52px;
+        }
+
+        .ind-card {
+            background: var(--bg);
+            padding: 36px 32px;
+            cursor: pointer;
+            transition: background .3s, transform .3s;
+        }
+
+        .ind-card:hover {
+            background: var(--blue);
+            transform: translateY(-3px);
+        }
+
+        .ind-card:hover .ind-name {
+            color: #fff;
+        }
+
+        .ind-card:hover .ind-blurb {
+            color: rgba(255, 255, 255, .6);
+        }
+
+        .ind-card:hover .ind-num {
+            color: rgba(255, 255, 255, .06);
+        }
+
+        .ind-num {
+            font-size: 2.4rem;
+            font-weight: 800;
+            color: rgba(10, 45, 110, .06);
+            line-height: 1;
+            margin-bottom: 12px;
+            transition: color .3s;
+        }
+
+        .ind-ico {
+            font-size: 1.6rem;
+            margin-bottom: 14px;
+        }
+
+        .ind-name {
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--blue);
+            margin-bottom: 8px;
+            transition: color .3s;
+        }
+
+        .ind-blurb {
+            font-size: 13px;
+            color: var(--muted);
+            line-height: 1.65;
+            transition: color .3s;
+        }
+
+        /* INSIGHTS */
+        .ins-bg {
+            background: var(--bg);
+        }
+
+        .ins-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 52px;
+        }
+
+        .ins-card {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            overflow: hidden;
+            transition: box-shadow .3s, transform .3s;
+            cursor: pointer;
+        }
+
+        .ins-card:hover {
+            box-shadow: 0 12px 36px rgba(10, 45, 110, .09);
+            transform: translateY(-4px);
+        }
+
+        .ins-img {
+            height: 160px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+        }
+
+        .ii1 {
+            background: linear-gradient(135deg, #e8f0fe, #c3d4fb);
+        }
+
+        .ii2 {
+            background: linear-gradient(135deg, #fef3e8, #fdd6a4);
+        }
+
+        .ii3 {
+            background: linear-gradient(135deg, #e8fef0, #a4fdc7);
+        }
+
+        .ins-body {
+            padding: 24px;
+        }
+
+        .ins-meta {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--muted);
+            letter-spacing: .07em;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .ins-card h3 {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--blue);
+            line-height: 1.4;
+            margin-bottom: 10px;
+        }
+
+        .ins-card p {
+            font-size: 13px;
+            color: var(--muted);
+            line-height: 1.65;
+        }
+
+        /* CTA + FORM */
+        .cta-band {
+            background: linear-gradient(135deg, var(--blue) 0%, var(--blue-mid) 100%);
+            padding: 80px 32px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-band::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 60% 80% at 50% 120%, rgba(244, 124, 32, .15) 0%, transparent 60%);
+        }
+
+        .cta-inner {
+            max-width: 1320px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 72px;
+            align-items: start;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-left h2 {
+            font-size: clamp(1.8rem, 3vw, 2.6rem);
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .cta-left p {
+            color: rgba(255, 255, 255, .65);
+            font-size: 15px;
+            line-height: 1.75;
+            margin-bottom: 28px;
+        }
+
+        .cta-pts {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .cta-pts li {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            font-size: 14px;
+            color: rgba(255, 255, 255, .8);
+        }
+
+        .cta-pts li::before {
+            content: '✓';
+            color: var(--orange);
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+
+        .form-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 36px;
+        }
+
+        .form-card h3 {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--blue);
+            margin-bottom: 6px;
+        }
+
+        .form-card>p {
+            font-size: 13px;
+            color: var(--muted);
+            margin-bottom: 24px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-bottom: 14px;
+        }
+
+        .form-field input,
+        .form-field textarea {
+            width: 100%;
+            padding: 11px 14px;
+            border: 1.5px solid var(--border);
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 13.5px;
+            color: var(--text);
+            background: var(--bg);
+            outline: none;
+            transition: border-color .2s;
+        }
+
+        .form-field input:focus,
+        .form-field textarea:focus {
+            border-color: var(--blue-light);
+            background: #fff;
+        }
+
+        .form-field textarea {
+            resize: vertical;
+            min-height: 88px;
+            margin-bottom: 14px;
+            display: block;
+        }
+
+        .form-btn {
+            width: 100%;
+            padding: 13px;
+            background: var(--orange);
+            color: #fff;
+            border: none;
+            border-radius: 9px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 700;
+            transition: background .2s;
+        }
+
+        .form-btn:hover {
+            background: var(--orange-light);
+        }
+
+        .form-note {
+            font-size: 11px;
+            color: var(--muted);
+            margin-top: 12px;
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #0d1117;
+            color: rgba(255, 255, 255, .45);
+            font-size: 13.5px;
+        }
+
+        .ft-top {
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 64px 32px 48px;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 52px;
+        }
+
+        .ft-brand-name {
+            font-weight: 800;
+            font-size: 15px;
+            color: #fff;
+            display: block;
+            margin-top: 10px;
+        }
+
+        .ft-brand-name em {
+            color: var(--orange);
+            font-style: normal;
+        }
+
+        .ft-brand p {
+            font-size: 13px;
+            color: rgba(255, 255, 255, .4);
+            line-height: 1.75;
+            margin-top: 10px;
+            max-width: 280px;
+        }
+
+        .ft-col h5 {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .3);
+            margin-bottom: 18px;
+        }
+
+        .ft-col a {
+            display: block;
+            font-size: 13px;
+            color: rgba(255, 255, 255, .5);
+            text-decoration: none;
+            margin-bottom: 9px;
+            transition: color .2s;
+        }
+
+        .ft-col a:hover {
+            color: var(--orange);
+        }
+
+        .ft-offices {
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 28px 32px;
+            border-top: 1px solid rgba(255, 255, 255, .07);
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .ft-office h6 {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .3);
+            margin-bottom: 8px;
+        }
+
+        .ft-office p {
+            font-size: 13px;
+            line-height: 1.65;
+        }
+
+        .ft-office a {
+            color: var(--orange-light);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .ft-bottom {
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 20px 32px;
+            border-top: 1px solid rgba(255, 255, 255, .06);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .ft-links {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .ft-links a {
+            font-size: 12px;
+            color: rgba(255, 255, 255, .28);
+            text-decoration: none;
+            transition: color .2s;
+        }
+
+        .ft-links a:hover {
+            color: rgba(255, 255, 255, .6);
+        }
+
+        .clutch {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, .05);
+            border: 1px solid rgba(255, 255, 255, .1);
+            border-radius: 8px;
+            padding: 8px 14px;
+            text-decoration: none;
+        }
+
+        .clutch-stars {
+            color: #ff6c2c;
+            font-size: 13px;
+        }
+
+        .clutch-lbl {
+            font-size: 11px;
+            color: rgba(255, 255, 255, .38);
+        }
+
+        /* Cookie */
+        .cookie {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            max-width: 560px;
+            background: var(--blue);
+            border-radius: 14px;
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            box-shadow: 0 16px 48px rgba(0, 0, 0, .2);
+            z-index: 999;
+            flex-wrap: wrap;
+        }
+
+        .cookie p {
+            font-size: 13px;
+            color: rgba(255, 255, 255, .8);
+            line-height: 1.6;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .cookie a {
+            color: var(--orange-light);
+        }
+
+        .cookie-ok {
+            background: var(--orange);
+            color: #fff;
+            border: none;
+            padding: 9px 20px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 13px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        /* Reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(22px);
+            transition: opacity .7s, transform .7s;
+        }
+
+        .reveal.in {
+            opacity: 1;
+            transform: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+
+            .hero-inner,
+            .cta-inner {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-panel {
+                display: none;
+            }
+
+            .svc-grid,
+            .sol-grid,
+            .ind-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .case-grid,
+            .ins-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .ft-top {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .ft-offices {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .stats-inner {
+                grid-template-columns: 1fr 1fr;
+                gap: 24px;
+            }
+
+            .stat-box {
+                border-right: none;
+            }
+        }
+
+        @media (max-width: 680px) {
+
+            .svc-grid,
+            .sol-grid,
+            .ind-grid,
+            .case-grid,
+            .ins-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .sec-hd {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .ft-top,
+            .ft-offices {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAV -->
+    <header class="nav-wrap" id="nav">
+        <div class="nav-inner">
+            <a href="#" class="logo-wrap">
+                <div class="logo-box">
+                    <img src="RASlogo.jpg" alt="company logo" style="height: 65px;">
+                </div>
+                <div>
+                    <div class="logo-name"><em>RAS InfoTech Solution</em></div>
+                    <div class="logo-sub">Real & Simple Solutions</div>
+                </div>
+            </a>
+            <nav class="nav-menu">
+                <div class="nav-item">
+                    <span class="nav-link">Services <svg viewBox="0 0 12 8" fill="none">
+                            <path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                        </svg></span>
+                    <div class="mega">
+                        <div class="mega-col" style="min-width:185px">
+                            <h6>IT Services</h6>
+                            <a href="#">IT Consulting</a>
+                            <a href="#">Business Consulting</a>
+                            <a href="#">ERP Implementation</a>
+                            <a href="#">Managed IT Services</a>
+                            <a href="#">API Development</a>
+                            <a href="#">Maintenance & Support</a>
+                        </div>
+                        <div class="mega-col" style="min-width:185px">
+                            <h6>Solutions</h6>
+                            <a href="#">SAP Business One</a>
+                            <a href="#">Microsoft Business Central</a>
+                            <a href="#">Focus ERP</a>
+                            <a href="#">Microsoft Power BI</a>
+                            <a href="#">UI/UX Development</a>
+                            <a href="#">Operational Resources</a>
+                        </div>
+                        <div class="mega-col" style="min-width:155px">
+                            <h6>Technologies</h6>
+                            <a href="#">SAP</a>
+                            <a href="#">Dynamics 365</a>
+                            <a href="#">Power BI</a>
+                            <a href="#">Azure</a>
+                            <a href="#">AWS</a>
+                            <a href="#">Salesforce</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="nav-item">
+                    <span class="nav-link">Industries <svg viewBox="0 0 12 8" fill="none">
+                            <path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                        </svg></span>
+                    <div class="drop">
+                        <a href="#">Manufacturing</a>
+                        <a href="#">Retail & E-Commerce</a>
+                        <a href="#">Trading & Distribution</a>
+                        <a href="#">Gems & Jewellery</a>
+                        <a href="#">EPC Industry</a>
+                        <a href="#">Technology</a>
+                    </div>
+                </div>
+                <div class="nav-item"><a href="#" class="nav-link">Case Studies</a></div>
+                <div class="nav-item"><a href="#" class="nav-link">Insights</a></div>
+                <div class="nav-item">
+                    <span class="nav-link">Company <svg viewBox="0 0 12 8" fill="none">
+                            <path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                        </svg></span>
+                    <div class="drop">
+                        <a href="#">About Us</a>
+                        <a href="#">Our Approach</a>
+                        <a href="#">Awards</a>
+                        <a href="#">Careers</a>
+                        <a href="#">News</a>
+                        <a href="#">Office Locations</a>
+                    </div>
+                </div>
+                <a href="#contact" class="nav-cta">Contact Us</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-inner">
+            <div>
+                <div class="hero-tag">ERP & IT Solutions Provider</div>
+                <h1>We Are Your<br><span>Technology</span><br>Partner</h1>
+                <p class="hero-desc">RAS InfoTech Solution delivers expert ERP implementation, IT consulting, and
+                    digital transformation that streamlines operations and drives measurable business growth.</p>
+                <div class="hero-btns">
+                    <a href="#contact" class="btn-orange">Request a Consultation</a>
+                    <a href="#services" class="btn-ghost">Explore Services</a>
+                </div>
+            </div>
+            <div class="hero-panel">
+                <h3>Core Services</h3>
+                <div class="svc-row">
+                    <div class="svc-dot"></div><span>Business & IT Consulting</span><span class="svc-arr">→</span>
+                </div>
+                <div class="svc-row">
+                    <div class="svc-dot"></div><span>ERP Implementation & Support</span><span class="svc-arr">→</span>
+                </div>
+                <div class="svc-row">
+                    <div class="svc-dot"></div><span>UI/UX Design & Development</span><span class="svc-arr">→</span>
+                </div>
+                <div class="svc-row">
+                    <div class="svc-dot"></div><span>API Development</span><span class="svc-arr">→</span>
+                </div>
+                <div class="svc-row">
+                    <div class="svc-dot"></div><span>Operational Resources & Training</span><span
+                        class="svc-arr">→</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATS -->
+    <div class="stats-bar">
+        <div class="stats-inner">
+            <div class="stat-box">
+                <div class="stat-num">50<em>+</em></div>
+                <div class="stat-lbl">Projects Delivered</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-num">6<em>+</em></div>
+                <div class="stat-lbl">Industries Served</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-num">3</div>
+                <div class="stat-lbl">ERP Platforms</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-num">100<em>%</em></div>
+                <div class="stat-lbl">Client Satisfaction</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SERVICES -->
+    <section class="section" id="services">
+        <div class="section-inner">
+            <div class="sec-hd">
+                <div>
+                    <div class="sec-tag">What We Do</div>
+                    <h2 class="sec-h2">End-to-End IT &amp; Business Services</h2>
+                </div>
+                <a href="#" class="see-all">View all services →</a>
+            </div>
+            <div class="svc-grid">
+                <div class="svc-card reveal">
+                    <div class="svc-ico">💼</div>
+                    <h3>Business Consulting</h3>
+                    <p>Expert guidance to help businesses improve operations, achieve strategic goals, and solve complex
+                        organizational challenges with proven frameworks.</p><a href="#" class="svc-more">Learn more
+                        →</a>
+                </div>
+                <div class="svc-card reveal">
+                    <div class="svc-ico">💻</div>
+                    <h3>IT Consulting</h3>
+                    <p>Strategic technology advisory to align your IT infrastructure, systems, and digital roadmap with
+                        long-term business objectives and growth plans.</p><a href="#" class="svc-more">Learn more →</a>
+                </div>
+                <div class="svc-card reveal">
+                    <div class="svc-ico">⚙️</div>
+                    <h3>ERP Implementation & Support</h3>
+                    <p>End-to-end ERP selection, deployment, and maintenance integrating finance, HR, supply chain, and
+                        manufacturing into one seamless system.</p><a href="#" class="svc-more">Learn more →</a>
+                </div>
+                <div class="svc-card reveal">
+                    <div class="svc-ico">🎨</div>
+                    <h3>UI/UX Design & Development</h3>
+                    <p>Intuitive, visually refined digital products blending user experience best practices with modern
+                        interface design for maximum engagement.</p><a href="#" class="svc-more">Learn more →</a>
+                </div>
+                <div class="svc-card reveal">
+                    <div class="svc-ico">🔌</div>
+                    <h3>API Development</h3>
+                    <p>Robust, scalable API solutions that connect your systems, automate workflows, and enable seamless
+                        third-party integrations at any scale.</p><a href="#" class="svc-more">Learn more →</a>
+                </div>
+                <div class="svc-card reveal">
+                    <div class="svc-ico">📚</div>
+                    <h3>Operational Resources</h3>
+                    <p>Structured ERP training, Prince2 certification, and on-the-job support so your teams extract full
+                        value from every technology investment.</p><a href="#" class="svc-more">Learn more →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CASE STUDIES -->
+    <section class="section case-studies">
+        <div class="section-inner">
+            <div class="sec-hd">
+                <div>
+                    <div class="sec-tag">Portfolio</div>
+                    <h2 class="sec-h2">Selected Case Studies</h2>
+                </div>
+                <a href="#" class="see-all">All case studies →</a>
+            </div>
+            <div class="case-grid">
+                <div class="case-card reveal">
+                    <div class="case-img ci1">🏭</div>
+                    <div class="case-body">
+                        <div class="case-tags"><span class="case-tag">SAP Business One</span><span
+                                class="case-tag">Manufacturing</span></div>
+                        <h3>SAP B1 Implementation for Mid-Sized Manufacturer</h3>
+                        <p>Deployed SAP Business One integrating production planning, inventory control, and financial
+                            reporting — cutting reporting time by 60%.</p>
+                        <a href="#" class="case-link">Read case study →</a>
+                    </div>
+                </div>
+                <div class="case-card reveal">
+                    <div class="case-img ci2">🛒</div>
+                    <div class="case-body">
+                        <div class="case-tags"><span class="case-tag">Focus ERP</span><span
+                                class="case-tag">Retail</span></div>
+                        <h3>Unified ERP for Multi-Location Retail Chain</h3>
+                        <p>Implemented Focus ERP across 12 store locations, unifying POS, inventory, and supplier
+                            management with real-time analytics dashboards.</p>
+                        <a href="#" class="case-link">Read case study →</a>
+                    </div>
+                </div>
+                <div class="case-card reveal">
+                    <div class="case-img ci3">💎</div>
+                    <div class="case-body">
+                        <div class="case-tags"><span class="case-tag">Microsoft BC</span><span class="case-tag">Gems &
+                                Jewellery</span></div>
+                        <h3>Business Central Rollout for Jewellery House</h3>
+                        <p>Customized Microsoft Business Central for hallmarking compliance, consignment tracking, and
+                            multi-currency operations at scale.</p>
+                        <a href="#" class="case-link">Read case study →</a>
+                    </div>
+                </div>
+                <div class="case-card reveal">
+                    <div class="case-img ci4">📊</div>
+                    <div class="case-body">
+                        <div class="case-tags"><span class="case-tag">Power BI</span><span
+                                class="case-tag">Distribution</span></div>
+                        <h3>Power BI Analytics Platform for Distributor</h3>
+                        <p>Built an interactive Power BI suite giving leadership real-time KPIs, demand forecasting, and
+                            territory performance insights.</p>
+                        <a href="#" class="case-link">Read case study →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOLUTIONS -->
+    <section class="section solutions">
+        <div class="section-inner">
+            <div class="sec-hd">
+                <div>
+                    <div class="sec-tag">Our Platforms</div>
+                    <h2 class="sec-h2">ERP & BI Solutions We Implement</h2>
+                </div>
+                <p class="sec-desc">Certified partners of the world's leading enterprise platforms, delivering tailored
+                    implementations that fit your business exactly.</p>
+            </div>
+            <div class="sol-grid">
+                <div class="sol-card reveal">
+                    <div class="sol-badge">ERP</div>
+                    <h3>SAP Business One</h3>
+                    <p>Complete ERP for small and mid-sized businesses covering financials, CRM, inventory, production,
+                        and operations in one platform.</p>
+                </div>
+                <div class="sol-card reveal">
+                    <div class="sol-badge">ERP</div>
+                    <h3>Microsoft Business Central</h3>
+                    <p>Cloud-native ERP deeply integrated with Microsoft 365, Teams, and Azure for seamless, modern
+                        business management.</p>
+                </div>
+                <div class="sol-card reveal">
+                    <div class="sol-badge">ERP</div>
+                    <h3>Focus ERP</h3>
+                    <p>Flexible, modular ERP built for diverse industries with powerful reporting, inventory management,
+                        and financial control tools.</p>
+                </div>
+                <div class="sol-card reveal">
+                    <div class="sol-badge">Analytics</div>
+                    <h3>Microsoft Power BI</h3>
+                    <p>Transform raw business data into interactive dashboards and real-time intelligence that drives
+                        faster, more informed decisions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INDUSTRIES -->
+    <section class="section" id="industries">
+        <div class="section-inner">
+            <div class="sec-hd">
+                <div>
+                    <div class="sec-tag">Industries We Serve</div>
+                    <h2 class="sec-h2">Deep Domain Expertise Across Key Sectors</h2>
+                </div>
+                <a href="#" class="see-all">All industries →</a>
+            </div>
+            <div class="ind-grid">
+                <div class="ind-card reveal">
+                    <div class="ind-num">01</div>
+                    <div class="ind-ico">🏭</div>
+                    <div class="ind-name">Manufacturing</div>
+                    <p class="ind-blurb">Production planning, inventory control, quality management, and predictive
+                        maintenance for manufacturers of all scales.</p>
+                </div>
+                <div class="ind-card reveal">
+                    <div class="ind-num">02</div>
+                    <div class="ind-ico">🛒</div>
+                    <div class="ind-name">Retail & E-Commerce</div>
+                    <p class="ind-blurb">Unified online and offline channel management, real-time inventory, and
+                        customer experience platforms for retailers.</p>
+                </div>
+                <div class="ind-card reveal">
+                    <div class="ind-num">03</div>
+                    <div class="ind-ico">🚚</div>
+                    <div class="ind-name">Trading & Distribution</div>
+                    <p class="ind-blurb">Supply chain optimization, procurement automation, and order fulfillment across
+                        complex distribution networks.</p>
+                </div>
+                <div class="ind-card reveal">
+                    <div class="ind-num">04</div>
+                    <div class="ind-ico">💎</div>
+                    <div class="ind-name">Gems & Jewellery</div>
+                    <p class="ind-blurb">Specialized solutions for inventory tracking, hallmarking compliance, and
+                        customer management in the jewellery trade.</p>
+                </div>
+                <div class="ind-card reveal">
+                    <div class="ind-num">05</div>
+                    <div class="ind-ico">🏗️</div>
+                    <div class="ind-name">EPC Industry</div>
+                    <p class="ind-blurb">Project management, resource planning, and procurement tools for engineering,
+                        procurement, and construction firms.</p>
+                </div>
+                <div class="ind-card reveal">
+                    <div class="ind-num">06</div>
+                    <div class="ind-ico">💡</div>
+                    <div class="ind-name">Technology</div>
+                    <p class="ind-blurb">Digital solutions, system integrations, and custom software for
+                        technology-driven and software-led organizations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INSIGHTS -->
+    <section class="section ins-bg">
+        <div class="section-inner">
+            <div class="sec-hd">
+                <div>
+                    <div class="sec-tag">Insights</div>
+                    <h2 class="sec-h2">Latest from Our Experts</h2>
+                </div>
+                <a href="#" class="see-all">All insights →</a>
+            </div>
+            <div class="ins-grid">
+                <div class="ins-card reveal">
+                    <div class="ins-img ii1">📊</div>
+                    <div class="ins-body">
+                        <div class="ins-meta">ERP · 5 min read</div>
+                        <h3>How to Choose the Right ERP for Your Business in 2025</h3>
+                        <p>A practical guide to evaluating SAP Business One, Microsoft Business Central, and Focus ERP
+                            for mid-market companies.</p>
+                    </div>
+                </div>
+                <div class="ins-card reveal">
+                    <div class="ins-img ii2">🤖</div>
+                    <div class="ins-body">
+                        <div class="ins-meta">Digital Transformation · 4 min read</div>
+                        <h3>The Role of Power BI in Modern Business Decision-Making</h3>
+                        <p>How real-time analytics dashboards help distribution and retail businesses consistently
+                            outperform their competition.</p>
+                    </div>
+                </div>
+                <div class="ins-card reveal">
+                    <div class="ins-img ii3">🔌</div>
+                    <div class="ins-body">
+                        <div class="ins-meta">API Development · 6 min read</div>
+                        <h3>Why API-First Architecture Matters for Growing Enterprises</h3>
+                        <p>Building scalable, connected systems that grow with your business — and why starting with
+                            APIs saves time and cost.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA + FORM -->
+    <section class="cta-band" id="contact">
+        <div class="cta-inner">
+            <div class="cta-left">
+                <h2>Ready to Transform Your Business?</h2>
+                <p>Tell us about your challenge. Our consultants will respond within one business day with a tailored
+                    plan.</p>
+                <ul class="cta-pts">
+                    <li>Free initial consultation — no commitment</li>
+                    <li>Certified ERP and IT specialists on every project</li>
+                    <li>End-to-end ownership from consulting to go-live</li>
+                    <li>Ongoing support and training included</li>
+                </ul>
+            </div>
+            <div class="form-card">
+                <h3>Contact Us</h3>
+                <p>Sales and general enquiries — info@rasinfosolution.com</p>
+                <div class="form-row">
+                    <div class="form-field"><input type="text" placeholder="Full name"></div>
+                    <div class="form-field"><input type="email" placeholder="E-mail"></div>
+                </div>
+                <div class="form-row">
+                    <div class="form-field"><input type="tel" placeholder="Phone number"></div>
+                    <div class="form-field"><input type="text" placeholder="Company"></div>
+                </div>
+                <div class="form-field"><textarea placeholder="How can we help you?"></textarea></div>
+                <button class="form-btn">Send Message</button>
+                <p class="form-note">By clicking Send you agree to our Privacy Policy. Your data is used solely to
+                    respond to your enquiry.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="ft-top">
+            <div class="ft-brand">
+                <div class="logo-box">
+                    <img src="RASlogo.jpg" alt="company logo" style="height: 65px; border-radius: 10px; margin-left: 100px;">
+                </div>
+                <span class="ft-brand-name"><em>RAS InfoTech Solution</em> </span>
+                <p>Real & Simple Solutions for businesses seeking digital transformation, ERP excellence, and long-term
+                    technology partnership.</p>
+            </div>
+            <div class="ft-col">
+                <h5>Services</h5>
+                <a href="#">Business Consulting</a>
+                <a href="#">IT Consulting</a>
+                <a href="#">ERP Implementation</a>
+                <a href="#">UI/UX Development</a>
+                <a href="#">API Development</a>
+                <a href="#">Operational Resources</a>
+            </div>
+            <div class="ft-col">
+                <h5>Solutions</h5>
+                <a href="#">SAP Business One</a>
+                <a href="#">Business Central</a>
+                <a href="#">Focus ERP</a>
+                <a href="#">Power BI</a>
+                <a href="#">Prince2 Training</a>
+                <a href="#">ERP Training</a>
+            </div>
+            <div class="ft-col">
+                <h5>Company</h5>
+                <a href="#">About Us</a>
+                <a href="#">Industries</a>
+                <a href="#">Case Studies</a>
+                <a href="#">Careers</a>
+                <a href="#">Job Openings</a>
+                <a href="#">Internships</a>
+            </div>
+        </div>
+        <div class="ft-offices">
+            <div class="ft-office">
+                <h6>India – Head Office</h6>
+                <p>New Delhi<br><a href="#">+91 982 190 0574</a> · Sales enquiries</p>
+            </div>
+            <!-- <div class="ft-office">
+                <h6>Canada</h6>
+                <p>cal<br><a href="mailto:info@rasinfosolution.com">info@rasinfosolution.com</a></p>
+            </div> -->
+            <div class="ft-office">
+                <h6>Contact</h6>
+                <p><a href="#">Contact form</a> · <a href="#">Phone & Email</a><br><a href="#">Request a consultation
+                        →</a></p>
+            </div>
+        </div>
+        <div class="ft-bottom">
+            <div>© 2025 RAS InfoTech Solution. All rights reserved.</div>
+            <div class="ft-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Cookie Preferences</a>
+            </div>
+            <div class="clutch">
+                <div class="clutch-stars">★★★★★</div>
+                <div class="clutch-lbl">4.9/5 · Clutch Reviews</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- COOKIE -->
+    <div class="cookie" id="cookie">
+        <p>This website uses cookies to enhance your experience. Read our <a href="#">Privacy Notice</a> to learn more.
+        </p>
+        <button class="cookie-ok" onclick="document.getElementById('cookie').style.display='none'">I agree</button>
+    </div>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 30);
+        });
+        const obs = new IntersectionObserver((entries) => {
+            entries.forEach((e, i) => {
+                if (e.isIntersecting) {
+                    setTimeout(() => e.target.classList.add('in'), i * 70);
+                    obs.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+    </script>
+</body>
+
+</html>
